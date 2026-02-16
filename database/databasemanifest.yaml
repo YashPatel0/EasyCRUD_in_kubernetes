@@ -1,0 +1,43 @@
+# This is the StatefulSet definition for the studentapp-db. It creates a single replica of a MariaDB database container.
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: studentapp-db
+  labels:
+    app: studentapp-db
+spec:
+  selector:
+    matchLabels:
+      app: studentapp-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: studentapp-db
+    spec:
+      containers:
+      - name: studentapp
+        image: mariadb:latest
+        ports:
+        - containerPort: 3306
+        env:
+          - name: "MARIADB_ROOT_PASSWORD"
+            value: "redhat"
+          - name: "MARIADB_DATABASE"
+            value: "studentapp-db"
+
+---
+# This is the service definition for the studentapp-db StatefulSet. It exposes the MySQL database on port 3306.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentapp-db-svc
+  labels:
+    app: studentapp-db
+spec:
+  selector:
+    app: studentapp-db
+  ports:
+    - port: 3306
+      targetPort: 3306
