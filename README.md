@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # MariaDB Setup and Configuration Guide for Windows
 
 This guide explains how to set up MariaDB, create a database, and Create Database User
@@ -56,3 +57,6 @@ EXIT;
 3. DB_PASS
 4. DB_PORT
 5. DB_NAME
+=======
+# EasyCRUD-in-kubernetes
+>>>>>>> 7c81e78cf455e6d13fe850ccd97df971302ea9f1
